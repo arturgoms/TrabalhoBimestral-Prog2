@@ -2,9 +2,9 @@
 #include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 //Variáveis
-char limpar[5] ="clear";
 int idx;
 
 //Funções
@@ -54,7 +54,7 @@ struct DadosTiposDeReceitas tiposdereceitas[4];
 
 void MenuPricipal(){
     int menu;
-    //system(limpar);
+    system("clear");
     printf("############################################\n");
     printf("#                  Menu                    #\n");
     printf("#                                          #\n");
@@ -85,9 +85,9 @@ void MenuPricipal(){
 }
 
 void Receitas(){
-    int menu;
+    int menu = 0;
     //system(ColorMenuPrincipal);
-    //system(limpar);
+    system("clear");
     printf("############################################\n");
     printf("#                Receitas                  #\n");
     printf("#                                          #\n");
@@ -140,6 +140,64 @@ void ListarReceitas(){
     return;
 }
 void EditarReceitas(){
+    int i, menu;
+    char nome[30], nome2[30];
+    char senha1[21],senha2[21],deposito[26];
+    printf("Seleciona umas das Receitas:\n");
+    for (i = 0; i < 30; i++){
+        if (*receitas[i].nome != '\0'){
+
+            printf("%d - %s - Tipo: %s |  Ingredientes: %s | Modo de Fazer: %s \n",i,receitas[i].nome, receitas[i].tipo, receitas[i].ingredientes, receitas[i].mododefazer);
+        }
+    }
+    scanf("%d",&menu);
+    if (receitas[menu].nome == '\0'){
+        printf("Opção não existe!!!!!\n");
+        redirecionamento();
+        ListarReceitas();
+    } else{
+        int menu2;
+        system("clear");
+        printf("Receita: %s, selecionada!\n", receitas[menu].nome);
+        //printf("############################################\n");
+        printf("#           O que deseja Editar?           #\n");
+        printf("#                                          #\n");
+        printf("#             1 - Nome                     #\n");
+        printf("#             2 - Tipo                     #\n");
+        printf("#             3 - Ingredientes             #\n");
+        printf("#             4 - Modo de Fazer            #\n");
+        printf("#             5 - Cardápio                 #\n");
+        printf("#                                          #\n");
+        printf("############################################\n");
+        scanf("%d",&menu2);
+        switch (menu2){
+            case 1:
+                printf("Insira o novo nome: \n");
+                scanf("%s", nome);
+                strcpy(receitas[menu].nome, nome);
+                ListarReceitas();
+                break;
+            case 2:
+                printf("Insira o novo nome: \n");
+                scanf("%s", nome);
+                strcpy(receitas[menu].tipo, nome);
+                ListarReceitas();
+                break;
+            case 3:
+                AdicionarReceitas();
+                break;
+            case 4:
+                ExcluirReceitas();
+                break;
+            case 5:
+                break;
+            default:
+                //system(limpar);
+                printf("Opção não existe!!!!!\n");
+                redirecionamento();
+                MenuPricipal();
+        }
+    }
     return;
 }
 void AdicionarReceitas(){
@@ -151,7 +209,7 @@ void ExcluirReceitas(){
 void Cardapios(){
     int menu;
     //system(ColorMenuPrincipal);
-    //system(limpar);
+    system("clear");
     printf("############################################\n");
     printf("#               Cardápios                  #\n");
     printf("#                                          #\n");
@@ -214,7 +272,7 @@ void ExcluirCardapios(){
 void TiposDeReceitas(){
     int menu;
     //system(ColorMenuPrincipal);
-    //system(limpar);
+    system("clear");
     printf("############################################\n");
     printf("#            Tipos de Receitas             #\n");
     printf("#                                          #\n");
@@ -309,7 +367,7 @@ void setDefaultValues(){
     return;
 }
 
-int main() {
+int main(){
     setlocale(LC_ALL,"");
     setDefaultValues();
     MenuPricipal();
