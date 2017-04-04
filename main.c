@@ -26,6 +26,9 @@ void AdicionarTiposDeReceitas();
 void ExcluirReceitas();
 void ExcluirCardapios();
 void ExcluirTiposDeReceitas();
+int lestring();
+char s[20];
+int t;
 
 //Structs
 struct DadosReceita {
@@ -54,7 +57,7 @@ struct DadosTiposDeReceitas tiposdereceitas[4];
 
 void MenuPricipal(){
     int menu;
-    system("clear");
+    system("@cls||clear");
     printf("############################################\n");
     printf("#                  Menu                    #\n");
     printf("#                                          #\n");
@@ -67,16 +70,19 @@ void MenuPricipal(){
 
     switch (menu){
         case 1:
+            system("@cls||clear");
             Receitas();
             break;
         case 2:
+            system("@cls||clear");
             TiposDeReceitas();
             break;
         case 3:
+            system("@cls||clear");
             Cardapios();
             break;
         default:
-            //system(limpar);
+            system("@cls||clear");
             printf("Menu não existe!!!!!\n");
             redirecionamento();
             MenuPricipal();
@@ -86,8 +92,7 @@ void MenuPricipal(){
 
 void Receitas(){
     int menu = 0;
-    //system(ColorMenuPrincipal);
-    system("clear");
+    system("@cls||clear");
     printf("############################################\n");
     printf("#                Receitas                  #\n");
     printf("#                                          #\n");
@@ -95,28 +100,37 @@ void Receitas(){
     printf("#             2 - Editar                   #\n");
     printf("#             3 - Adicionar                #\n");
     printf("#             4 - Excluir                  #\n");
+    printf("#             5 - Voltar                   #\n");
     printf("#                                          #\n");
     printf("############################################\n");
     scanf("%d",&menu);
 
     switch (menu){
         case 1:
+            system("@cls||clear");
             ListarReceitas();
             break;
         case 2:
+            system("@cls||clear");
             EditarReceitas();
             break;
         case 3:
+            system("@cls||clear");
             AdicionarReceitas();
             break;
         case 4:
+            system("@cls||clear");
             ExcluirReceitas();
             break;
+        case 5:
+            system("@cls||clear");
+            MenuPricipal();
+            break;
         default:
-            //system(limpar);
+            system("@cls||clear");
             printf("Menu não existe!!!!!\n");
             redirecionamento();
-            MenuPricipal();
+            Receitas();
     }
     return;
 }
@@ -141,8 +155,9 @@ void ListarReceitas(){
 }
 void EditarReceitas(){
     int i, menu;
-    char nome[30], nome2[30];
-    char senha1[21],senha2[21],deposito[26];
+    char nome[30];
+    char nome2[30];
+    char senha1[21];
     printf("Seleciona umas das Receitas:\n");
     for (i = 0; i < 30; i++){
         if (*receitas[i].nome != '\0'){
@@ -157,7 +172,7 @@ void EditarReceitas(){
         ListarReceitas();
     } else{
         int menu2;
-        system("clear");
+        system("@cls||clear");
         printf("Receita: %s, selecionada!\n", receitas[menu].nome);
         //printf("############################################\n");
         printf("#           O que deseja Editar?           #\n");
@@ -167,32 +182,52 @@ void EditarReceitas(){
         printf("#             3 - Ingredientes             #\n");
         printf("#             4 - Modo de Fazer            #\n");
         printf("#             5 - Cardápio                 #\n");
+        printf("#             6 - Voltar                   #\n");
         printf("#                                          #\n");
         printf("############################################\n");
         scanf("%d",&menu2);
         switch (menu2){
             case 1:
+                system("@cls||clear");
                 printf("Insira o novo nome: \n");
-                scanf("%s", nome);
-                strcpy(receitas[menu].nome, nome);
-                ListarReceitas();
+                t = lestring(s, 20);
+                strcpy(receitas[menu].nome, s);
+                Receitas();
                 break;
             case 2:
-                printf("Insira o novo nome: \n");
-                scanf("%s", nome);
-                strcpy(receitas[menu].tipo, nome);
-                ListarReceitas();
+                system("@cls||clear");
+                printf("Insira o novo tipo: \n");
+                t = lestring(s, 20);
+                strcpy(receitas[menu].tipo, s);
+                Receitas();
                 break;
             case 3:
-                AdicionarReceitas();
+                system("@cls||clear");
+                printf("Insira o novo ingredientes: \n");
+                t = lestring(s, 20);
+                strcpy(receitas[menu].ingredientes, s);
+                Receitas();
                 break;
             case 4:
-                ExcluirReceitas();
+                system("@cls||clear");
+                printf("Insira o novo modo de fazer: \n");
+                t = lestring(s, 20);
+                strcpy(receitas[menu].mododefazer, s);
+                Receitas();
                 break;
             case 5:
+                system("@cls||clear");
+                printf("Insira o novo cardapio: \n");
+                t = lestring(s, 20);
+                strcpy(receitas[menu].cardapio, s);
+                Receitas();
+                break;
+            case 6:
+                system("@cls||clear");
+                MenuPricipal();
                 break;
             default:
-                //system(limpar);
+                system("@cls||clear");
                 printf("Opção não existe!!!!!\n");
                 redirecionamento();
                 MenuPricipal();
@@ -208,8 +243,7 @@ void ExcluirReceitas(){
 }
 void Cardapios(){
     int menu;
-    //system(ColorMenuPrincipal);
-    system("clear");
+    system("@cls||clear");
     printf("############################################\n");
     printf("#               Cardápios                  #\n");
     printf("#                                          #\n");
@@ -223,18 +257,23 @@ void Cardapios(){
 
     switch (menu){
         case 1:
+            system("@cls||clear");
             ListarCardapios();
             break;
         case 2:
+            system("@cls||clear");
             EditarCardapios();
             break;
         case 3:
+            system("@cls||clear");
             AdicionarCardapios();
             break;
         case 4:
+            system("@cls||clear");
             ExcluirCardapios();
             break;
         default:
+            system("@cls||clear");
             //system(limpar);
             printf("Menu não existe!!!!!\n");
             redirecionamento();
@@ -261,6 +300,55 @@ void ListarCardapios(){
     return;
 }
 void EditarCardapios(){
+    int i, menu;
+    char nome[30];
+    char nome2[30];
+    char senha1[21];
+    printf("Seleciona um dos Cardápios:\n");
+    for (i = 0; i < 9; i++){
+        if (*cardapio[i].nome != '\0'){
+
+            printf("%d - %s\n",i,cardapio[i].nome);
+        }
+    }
+    scanf("%d",&menu);
+    if (cardapio[menu].nome == '\0'){
+        printf("Opção não existe!!!!!\n");
+        redirecionamento();
+        ListarReceitas();
+    } else{
+        int menu2;
+        system("@cls||clear");
+        printf("Cardápio: %s, selecionada!\n", cardapio[menu].nome);
+        //printf("############################################\n");
+        printf("#           O que deseja Editar?           #\n");
+        printf("#                                          #\n");
+        printf("#             1 - Nome                     #\n");
+        printf("#                                          #\n");
+        printf("############################################\n");
+        scanf("%d",&menu2);
+        switch (menu2){
+            case 1:
+                system("@cls||clear");
+                printf("Insira o novo nome: \n");
+                t = lestring(s, 20);
+                strcpy(cardapio[menu].nome, s);
+                Cardapios();
+                break;
+            case 2:
+                system("@cls||clear");
+                printf("Insira a nova receita: \n");
+                t = lestring(s, 20);
+                strcpy(receitas[menu].tipo, s);
+                Cardapios();
+                break;
+            default:
+                system("@cls||clear");
+                printf("Opção não existe!!!!!\n");
+                redirecionamento();
+                MenuPricipal();
+        }
+    }
     return;
 }
 void AdicionarCardapios(){
@@ -271,8 +359,7 @@ void ExcluirCardapios(){
 }
 void TiposDeReceitas(){
     int menu;
-    //system(ColorMenuPrincipal);
-    system("clear");
+    system("@cls||clear");
     printf("############################################\n");
     printf("#            Tipos de Receitas             #\n");
     printf("#                                          #\n");
@@ -286,19 +373,23 @@ void TiposDeReceitas(){
 
     switch (menu){
         case 1:
+            system("@cls||clear");
             ListarTiposDeReceitas();
             break;
         case 2:
+            system("@cls||clear");
             EditarTiposDeReceitas();
             break;
         case 3:
+            system("@cls||clear");
             AdicionarTiposDeReceitas();
             break;
         case 4:
+            system("@cls||clear");
             ExcluirTiposDeReceitas();
             break;
         default:
-            //system(limpar);
+            system("@cls||clear");
             printf("Menu não existe!!!!!\n");
             redirecionamento();
             MenuPricipal();
@@ -323,6 +414,47 @@ void ListarTiposDeReceitas(){
     return;
 }
 void EditarTiposDeReceitas(){
+    int i, menu;
+    char nome[30];
+    char nome2[30];
+    char senha1[21];
+    printf("Seleciona um dos Cardápios:\n");
+    for (i = 0; i < 4; i++){
+        if (*tiposdereceitas[i].nome != '\0'){
+            printf("%d - %s \n",i,tiposdereceitas[i].nome);
+        }
+    }
+    scanf("%d",&menu);
+    if (tiposdereceitas[menu].nome == '\0'){
+        printf("Opção não existe!!!!!\n");
+        redirecionamento();
+        ListarReceitas();
+    } else{
+        int menu2;
+        system("@cls||clear");
+        printf("Tipo de Receita: %s, selecionada!\n", tiposdereceitas[menu].nome);
+        //printf("############################################\n");
+        printf("#           O que deseja Editar?           #\n");
+        printf("#                                          #\n");
+        printf("#             1 - Nome                     #\n");
+        printf("#                                          #\n");
+        printf("############################################\n");
+        scanf("%d",&menu2);
+        switch (menu2){
+            case 1:
+                system("@cls||clear");
+                printf("Insira o novo nome: \n");
+                t = lestring(s, 20);
+                strcpy(tiposdereceitas[menu].nome, s);
+                TiposDeReceitas();
+                break;
+            default:
+                system("@cls||clear");
+                printf("Opção não existe!!!!!\n");
+                redirecionamento();
+                TiposDeReceitas();
+        }
+    }
     return;
 }
 void AdicionarTiposDeReceitas(){
@@ -372,4 +504,43 @@ int main(){
     setDefaultValues();
     MenuPricipal();
     return 0;
+}
+
+int lestring(char s[], int max)
+{
+    int i = 0;
+    char letra;
+
+    /* No caso o max é o tamanho que s pode receber. Deve ser passado o tamanho
+       mesmo, ou seja, se for passado 100 a função já se encarrega de não deixar
+       passar de 99 cars (+1 do finalizador)
+     */
+    for (i = 0; i < (max - 1); i++) {
+        letra = fgetc(stdin);
+
+        /* Veja que se encontrou um ENTER (\n) mas não leu nenhum caractere válido,
+              * não aceita. Precisa ler algo. Decrementa o i para anular o efeito do i++
+              * do laço e volta no laço com continue
+         */
+        if ((letra == '\n') && (i == 0)) {
+            i = i - 1;
+            continue;
+        }
+
+        /* Agora se leu um enter já tendo lido caracteres válidos, então
+         * o usuário terminou de digitar sua string e ela possui ao menos
+         * um caractere válido
+         */
+        if (letra == '\n')
+            break;
+        s[i] = letra;
+    }
+
+    /* Finaliza a string */
+    s[i] = 0;
+
+    /* retorna a quantidade de cars lidos (pode ser útil). Então, esta função
+       lê uma string e retorna o seu tamanho
+     */
+    return (i);
 }
