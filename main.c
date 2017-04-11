@@ -236,9 +236,51 @@ void EditarReceitas(){
     return;
 }
 void AdicionarReceitas(){
+    int i = 0;
+    for( i = 0; i < 30 ; i++){
+        if (*receitas[i].nome == '\0'){
+            break;
+        }
+    }
+    printf("Insira a nova Nome da receita: \n");
+    t = lestring(s, 50);
+    strcpy(receitas[i].nome,s);
+    printf("Insira a nova Tipo da receita: \n");
+    t = lestring(s, 50);
+    strcpy(receitas[i].tipo,s);
+    printf("Insira o novo Ingradiente da receita: \n");
+    t = lestring(s, 150);
+    strcpy(receitas[i].ingredientes,s);
+    printf("Insira o novo Modo de fazer da receita: \n");
+    t = lestring(s, 50);
+    strcpy(receitas[i].mododefazer,s);
+    printf("Insira o novo Cardapio da receita: \n");
+    t = lestring(s, 50);
+    strcpy(receitas[i].cardapio,s);
+    MenuPricipal();
     return;
 }
 void ExcluirReceitas(){
+    int i=0, menu;
+    for (i = 0; i < 30; i++){
+        if (*receitas[i].nome != '\0'){
+
+            printf("%d - %s - Tipo: %s |  Ingredientes: %s | Modo de Fazer: %s \n",i,receitas[i].nome, receitas[i].tipo, receitas[i].ingredientes, receitas[i].mododefazer);
+        }
+    }
+    scanf("%d",&menu);
+    for( i = menu; i < 30; i++){
+        if (*receitas[i].nome != '\0'){
+
+            strcpy(receitas[i].nome,receitas[i+1].nome);
+            strcpy(receitas[i].tipo,receitas[i+1].tipo);
+            strcpy(receitas[i].ingredientes,receitas[i+1].ingredientes);
+            strcpy(receitas[i].mododefazer,receitas[i+1].mododefazer);
+            strcpy(receitas[i].cardapio,receitas[i+1].cardapio);
+
+            }
+    }
+    MenuPricipal();
     return;
 }
 void Cardapios(){
